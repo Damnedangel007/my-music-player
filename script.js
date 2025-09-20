@@ -1,4 +1,3 @@
-const folderPicker = document.getElementById('folderPicker');
 const songListEl = document.getElementById('song-list');
 const audioPlayer = document.getElementById('audio-player');
 const searchInput = document.getElementById('search');
@@ -9,19 +8,17 @@ const nextBtn = document.getElementById('next');
 const shuffleBtn = document.getElementById('shuffle');
 const repeatBtn = document.getElementById('repeat');
 
-let songs = [];
+// List your songs here (file names inside /songs folder)
+const songs = [
+    { name: "For A Reason (Official Video) Karan Aujla  Tania    Latest Punjabi Songs 2025", file: "songs/For A Reason (Official Video) Karan Aujla  Tania    Latest Punjabi Songs 2025.mp3" },
+    { name: "MF GABHRU (Official Video) KARAN AUJLA  Latest Punjabi Songs 2025", file: "songs/MF GABHRU (Official Video) KARAN AUJLA  Latest Punjabi Songs 2025.mp3" },
+    { name: "SOFTLY (Official Music Video) KARAN AUJLA  IKKY  LATEST PUNJABI SONGS 2023", file: "songs/SOFTLY (Official Music Video) KARAN AUJLA  IKKY  LATEST PUNJABI SONGS 2023.mp3" }
+];
+
 let currentIndex = 0;
 let isPlaying = false;
 let shuffle = false;
 let repeat = false;
-
-// Load songs from folder
-folderPicker.addEventListener('change', (event) => {
-    songs = Array.from(event.target.files)
-                 .filter(file => file.name.endsWith('.mp3'))
-                 .map(file => ({ file, name: file.name.replace('.mp3','') }));
-    renderSongList();
-});
 
 // Render song list
 function renderSongList(filter = '') {
@@ -39,7 +36,7 @@ function renderSongList(filter = '') {
 // Play a song
 function playSong(index) {
     currentIndex = index;
-    audioPlayer.src = URL.createObjectURL(songs[index].file);
+    audioPlayer.src = songs[index].file;
     audioPlayer.play();
     isPlaying = true;
     playBtn.textContent = '⏸️';
@@ -103,3 +100,6 @@ audioPlayer.addEventListener('ended', () => {
 
 // Search songs
 searchInput.addEventListener('input', () => renderSongList(searchInput.value));
+
+// Initial render
+renderSongList();
