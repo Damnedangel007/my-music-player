@@ -1,6 +1,7 @@
 const songListEl = document.getElementById('song-list');
 const audioPlayer = document.getElementById('audio-player');
 const searchInput = document.getElementById('search');
+const currentSongEl = document.getElementById('current-song');
 
 const prevBtn = document.getElementById('prev');
 const playBtn = document.getElementById('play');
@@ -8,11 +9,11 @@ const nextBtn = document.getElementById('next');
 const shuffleBtn = document.getElementById('shuffle');
 const repeatBtn = document.getElementById('repeat');
 
-// List your songs here (file names inside /songs folder)
+// List your songs (file names in /songs folder)
 const songs = [
-    { name: "for_a_reason_karan_aujla", file: "songs/for_a_reason_karan_aujla.mp3" },
-    { name: "mf_gabhru_karan_aujla", file: "songs/mf_gabhru_karan_aujla.mp3" },
-    { name: "softly_karan_aujla", file: "songs/softly_karan_aujla.mp3" }
+    { name: "For A Reason", file: "songs/for_a_reason_karan_aujla.mp3" },
+    { name: "MF GABHRU", file: "songs/mf_gabhru_karan_aujla.mp3" },
+    { name: "SOFTLY", file: "songs/softly_karan_aujla.mp3" }
 ];
 
 let currentIndex = 0;
@@ -40,10 +41,11 @@ function playSong(index) {
     audioPlayer.play();
     isPlaying = true;
     playBtn.textContent = '⏸️';
+    currentSongEl.textContent = songs[index].name;
     highlightActiveSong();
 }
 
-// Highlight the currently playing song
+// Highlight active song
 function highlightActiveSong() {
     [...songListEl.children].forEach((li, idx) => {
         li.classList.toggle('active', idx === currentIndex);
