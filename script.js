@@ -10,9 +10,9 @@ const repeatBtn = document.getElementById('repeat');
 
 // List your songs here (file names inside /songs folder)
 const songs = [
-    { name: "For A Reason (Official Video) Karan Aujla  Tania    Latest Punjabi Songs 2025", file: "songs/For A Reason (Official Video) Karan Aujla  Tania    Latest Punjabi Songs 2025.mp3" },
-    { name: "MF GABHRU (Official Video) KARAN AUJLA  Latest Punjabi Songs 2025", file: "songs/MF GABHRU (Official Video) KARAN AUJLA  Latest Punjabi Songs 2025.mp3" },
-    { name: "SOFTLY (Official Music Video) KARAN AUJLA  IKKY  LATEST PUNJABI SONGS 2023", file: "songs/SOFTLY (Official Music Video) KARAN AUJLA  IKKY  LATEST PUNJABI SONGS 2023.mp3" }
+    { name: "for_a_reason_karan_aujla", file: "songs/for_a_reason_karan_aujla.mp3" },
+    { name: "mf_gabhru_karan_aujla", file: "songs/mf_gabhru_karan_aujla.mp3" },
+    { name: "softly_karan_aujla", file: "songs/softly_karan_aujla.mp3" }
 ];
 
 let currentIndex = 0;
