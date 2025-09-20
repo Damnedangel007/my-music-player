@@ -9,6 +9,10 @@ const nextBtn = document.getElementById('next');
 const shuffleBtn = document.getElementById('shuffle');
 const repeatBtn = document.getElementById('repeat');
 
+const progressBar = document.getElementById('progress-bar');
+const currentTimeEl = document.getElementById('current-time');
+const durationEl = document.getElementById('duration');
+
 // List your songs (file names in /songs folder)
 const songs = [
     { name: "For A Reason", file: "songs/for_a_reason_karan_aujla.mp3" },
@@ -102,6 +106,30 @@ audioPlayer.addEventListener('ended', () => {
 
 // Search songs
 searchInput.addEventListener('input', () => renderSongList(searchInput.value));
+
+// Progress bar updates
+audioPlayer.addEventListener('timeupdate', () => {
+    if (audioPlayer.duration) {
+        const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+        progressBar.value = progressPercent;
+        currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
+        durationEl.textContent = formatTime(audioPlayer.duration);
+    }
+});
+
+// Seek functionality
+progressBar.addEventListener('input', () => {
+    if (audioPlayer.duration) {
+        audioPlayer.currentTime = (progressBar.value / 100) * audioPlayer.duration;
+    }
+});
+
+// Helper: format seconds to mm:ss
+function formatTime(sec) {
+    const minutes = Math.floor(sec / 60);
+    const seconds = Math.floor(sec % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}
 
 // Initial render
 renderSongList();
